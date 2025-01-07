@@ -6,14 +6,14 @@
  * @Description: 首页banner
 -->
 <template>
-  <div class="index-banner">
+  <div v-if="state.bannerList.length > 0" class="index-banner">
     <el-carousel :interval="5000" arrow="always" height="190px">
       <el-carousel-item v-for="item in state.bannerList" :key="item">
         <img
           :src="item.url"
           alt="banner"
-          @click="jump(item)"
           style="width: 100%; height: 100%"
+          @click="jump(item)"
         />
       </el-carousel-item>
     </el-carousel>

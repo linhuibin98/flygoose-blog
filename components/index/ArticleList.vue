@@ -6,14 +6,16 @@
  * @Description: 首页文章列表
 -->
 <template>
-  <a-tabs
-    v-model:activeKey="activeKey"
-    class="index-tabs"
-    @change="setActiveKey"
-  >
-    <a-tab-pane key="0" tab="最新"> </a-tab-pane>
-    <a-tab-pane key="1" tab="热门"> </a-tab-pane>
-  </a-tabs>
+  <ClientOnly>
+    <a-tabs
+      v-model:active-key="activeKey"
+      class="index-tabs"
+      @change="setActiveKey"
+    >
+      <a-tab-pane key="0" tab="最新"> </a-tab-pane>
+      <a-tab-pane key="1" tab="热门"> </a-tab-pane>
+    </a-tabs>
+  </ClientOnly>
   <div
     v-infinite-scroll="load"
     :infinite-scroll-immediate="false"

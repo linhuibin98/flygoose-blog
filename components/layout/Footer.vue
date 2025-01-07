@@ -13,8 +13,8 @@
         <div class="content">{{ state.noticeInfo?.content }}</div>
       </div>
 
-      <img src="@/assets/images/logo.png" class="logo" />
-      <p class="intro">
+      <!-- <img src="@/assets/images/logo.png" class="logo" /> -->
+      <p v-if="state.intro" class="intro">
         {{ state.intro }}
       </p>
       <div class="tags">
@@ -33,12 +33,12 @@
 
       <div class="corp-links">
         <a
-          class="friend-link"
           v-for="item in links"
+          :key="item.id"
+          class="friend-link"
           target="_blank"
           rel="nofollow"
           :href="item.url"
-          :key="item.id"
           >{{ item.title }}</a
         >
       </div>

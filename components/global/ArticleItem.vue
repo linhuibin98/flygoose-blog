@@ -1,21 +1,13 @@
-<!--
- * @Author: Shaoli
- * @Date: 2023-02-13 23:10:31
- * @LastEditors: Shaoli
- * @LastEditTime: 2023-03-08 23:30:35
- * @Description: 通用的文章组件
--->
 <template>
-  <div class="blog-item">
+  <NuxtLink :to="`/detail/${props.item.id}`" class="blog-item">
     <div class="blog-content">
       <div class="item-left">
-        <NuxtLink
-          :to="`/detail/${props.item.id}`"
+        <div
           class="title single-ellipsis"
-          title="C++中static关键字的作用"
+          :title="props.item?.title"
         >
           {{ props.item?.title }}
-        </NuxtLink>
+        </div>
         <div class="intro multi-ellipsis-2">
           {{ props.item?.intro }}
         </div>
@@ -31,7 +23,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink :to="`/detail/${props.item.id}`">
 </template>
 
 <script lang="ts" setup>
@@ -52,6 +44,7 @@ const imgSrc = props.item?.thumbnail ? props.item.thumbnail : ''
 
 <style lang="less" scoped>
 .blog-item {
+  display: block;
   padding: 18px 24px;
   text-align: left;
   border-bottom: 1px solid #ececec;

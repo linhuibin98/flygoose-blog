@@ -19,7 +19,7 @@
       <a-input
         v-model:value="searchVal"
         class="search-input"
-        placeholder="探索码农社"
+        placeholder="探索内容"
         allow-clear
         @keyup.enter="jumpSearch"
       >

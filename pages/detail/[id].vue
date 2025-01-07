@@ -9,9 +9,7 @@
         {{ state.title }}
       </div>
 
-      <div class="preview-time">
-        {{ dayjs(state.time).format('YYYY-MM-DD hh:mm:ss') }}
-      </div>
+      <div v-if="state.time" class="preview-time">{{ state.time }}</div>
       <MdPreview
         class="preview"
         editor-id="preview-only"
@@ -20,7 +18,7 @@
       />
     </div>
 
-    <div class="blog">
+    <div v-if="state.list.length > 0" class="blog">
       <div class="title">作者的其他文章</div>
       <div>
         <ArticleItem
@@ -60,8 +58,12 @@ const getDetail = async () => {
   const { data }: any = await request.post('/blog/getBlogDetail', {
     id: Number(route.params.id)
   })
+  console.log('data?.blog.updateTime', data?.blog.updateTime)
   state.content = data?.blog.content || ''
-  state.time = data?.blog.updateTime || ''
+  state.time = dayjs(data?.blog.updateTime || '').format('YYYY-MM-DD hh:mm:ss')
+  if (state.time === 'Invalid Date') {
+    state.time = ''
+  }
   state.title = data?.blog.title || ''
   state.list = (data?.list as []) || []
 }
