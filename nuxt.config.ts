@@ -1,6 +1,6 @@
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import prismjs from 'vite-plugin-prismjs'
+import { prismjsPlugin } from 'vite-plugin-prismjs'
 
 // const isProduction = process.env.NODE_ENV === 'production'
 
@@ -22,7 +22,11 @@ export default defineNuxtConfig({
       // script: [{ src: 'https://at.alicdn.com/t/font_3420979_o8r3ia8tx4c.js' }]
     }
   },
-  modules: ['@element-plus/nuxt', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt',],
+  modules: [
+    '@element-plus/nuxt',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
+  ],
   elementPlus: {
     directives: {
       InfiniteScroll: 'ElInfiniteScroll'
@@ -64,9 +68,9 @@ export default defineNuxtConfig({
 
     plugins: [
       Components({
-        resolvers: [AntDesignVueResolver(), ]
+        resolvers: [AntDesignVueResolver()]
       }),
-      prismjs({
+      prismjsPlugin({
         languages: [
           'js',
           'javascript',
@@ -100,6 +104,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BASE_URL: process.env.BASE_URL + '/api',
+      API_HOSTNAME: process.env.BASE_URL,
+      API_PREFIX: '/api'
     }
   }
   // autoImports: {

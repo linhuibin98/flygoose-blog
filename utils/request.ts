@@ -73,7 +73,15 @@ const defaultOption = {
 
 const fetch = (url: string, options?: CommonObject): Promise<ResponseConfig> => {
   const { $router, $config } = useNuxtApp()
-  const reqUrl = $config.public.BASE_URL + url
+  $config
+  let reqUrl = '';
+
+  if (process.server) {
+    reqUrl = $config.public.API_HOSTNAME + $config.public.API_PREFIX + url
+  } else {
+    // process.client
+    reqUrl = $config.public.API_PREFIX + url
+  }
   const p: CommonObject = {
     ...defaultOption,
     ...options
